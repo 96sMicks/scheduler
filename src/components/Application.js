@@ -34,7 +34,7 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-          day={days}
+          days={days}
           day={day}
           setDay={setDay}
           // setDay={day => console.log(day)} was used to see the click day on console 
