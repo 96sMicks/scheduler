@@ -1,7 +1,8 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
+import Appointment from "./Appointment";
 
 const days = [
   {
@@ -21,6 +22,61 @@ const days = [
   },
 ];
 
+const appointments = [
+  {
+    id: 1,
+    time: "12pm",
+  },
+  {
+    id: 2,
+    time: "1pm",
+    interview: {
+      student: "Lydia Miller-Jones",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      },
+    },
+  },
+  {
+    id: 3,
+    time: "2pm",
+    interview: {
+      student: "Mickey",
+      interviewer: {
+        id: 2,
+        name: "Damian Lillard",
+        avatar: "https://i.imgur.com/twYrpay.jpg",
+      },
+    },
+  },
+  {
+    id: 4,
+    time: "3pm",
+    interview: {
+      student: "Jayson Tatum",
+      interviewer: {
+        id: 2,
+        name: "Scott Smith",
+        avatar: "https://i.imgur.com/FK8V841.jpg",
+      },
+    },
+  },
+  {
+    id: 5,
+    time: "5pm",
+    interview: {
+      student: "Naruto",
+      interviewer: {
+        id: 2,
+        name: "Goku",
+        avatar: "https://i.imgur.com/T2WwVfS.png",
+      },
+    },
+  },
+];
+
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
   return (
@@ -34,17 +90,18 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-          days={days}
-          day={day}
-          setDay={setDay}
-          // setDay={day => console.log(day)} was used to see the click day on console 
+            days={days}
+            day={day}
+            setDay={setDay}
+            // setDay={day => console.log(day)} was used to see the click day on console
           />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
           src="images/lhl.png"
           alt="Lighthouse Labs"
-        />ß
+        />
+        ß
       </section>
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
