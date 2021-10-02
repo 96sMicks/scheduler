@@ -63,22 +63,18 @@ const appointments = [
       },
     },
   },
-  {
-    id: 5,
-    time: "5pm",
-    interview: {
-      student: "Naruto",
-      interviewer: {
-        id: 2,
-        name: "Goku",
-        avatar: "https://i.imgur.com/T2WwVfS.png",
-      },
-    },
-  },
 ];
 
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
+
+  const parsedAppointmentList = appointments.map(app =>
+    <Appointment
+      key={app.id}
+      id={app.id}
+      time={app.time}
+      interview={app.interview}
+      />)
   return (
     <main className="layout">
       <section className="sidebar">
@@ -104,7 +100,8 @@ export default function Application(props) {
         ß
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+       { parsedAppointmentList }
+       <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
