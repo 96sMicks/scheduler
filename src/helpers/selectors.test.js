@@ -35,12 +35,12 @@ test.only("getAppointmentsForDay returns an array", () => {
   expect(Array.isArray(result)).toBe(true);
 });
 
-test("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
+test.only("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
   const result = getAppointmentsForDay(state, "Monday");
   expect(result.length).toEqual(3);
 });
 
-test("getAppointmentsForDay returns an array containing the correct appointment objects", () => {
+test.only("getAppointmentsForDay returns an array containing the correct appointment objects", () => {
   const [first, second] = getAppointmentsForDay(state, "Tuesday");
   expect(first).toEqual(state.appointments["4"]);
   expect(second).toEqual(state.appointments["5"]);
