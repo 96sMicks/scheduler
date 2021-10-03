@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+const days = [];
+// const days = [
+//   {
+//     id: 1,
+//     name: "Monday",
+//     spots: 2,
+//   },
+//   {
+//     id: 2,
+//     name: "Tuesday",
+//     spots: 5,
+//   },
+//   {
+//     id: 3,
+//     name: "Wednesday",
+//     spots: 0,
+//   },
+// ];
 
 const appointments = [
   {
@@ -42,14 +44,14 @@ const appointments = [
   {
     id: 3,
     time: "2pm",
-    interview: {
-      student: "Mickey",
-      interviewer: {
-        id: 2,
-        name: "Damian Lillard",
-        avatar: "https://i.imgur.com/twYrpay.jpg",
-      },
-    },
+    // interview: {
+    //   student: "Mickey",
+    //   interviewer: {
+    //     id: 2,
+    //     name: "Damian Lillard",
+    //     avatar: "https://i.imgur.com/twYrpay.jpg",
+    //   },
+    // },
   },
   {
     id: 4,
@@ -71,9 +73,7 @@ export default function Application(props) {
   const parsedAppointmentList = appointments.map(app =>
     <Appointment
       key={app.id}
-      id={app.id}
-      time={app.time}
-      interview={app.interview}
+      {...app}
       />)
   return (
     <main className="layout">
