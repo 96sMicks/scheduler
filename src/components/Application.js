@@ -5,9 +5,6 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 
-// const days =[];
-const days = [days, setDays] = useState([]);
-
 
 const appointments = [
   {
@@ -54,6 +51,7 @@ const appointments = [
 
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
+  const [days, setDays] = useState([])
 
   const parsedAppointmentList = appointments.map(app =>
     <Appointment
@@ -62,9 +60,10 @@ export default function Application(props) {
       />)
 
   useEffect(() => {
-    const dayURL = "http://localhost:8001/api/days"
-    axios.get()
-  })
+    const daysURL = "http://localhost:8001/api/days"
+    axios.get(daysURL)
+      .then((response) => {setDays([...response.data])})},[])
+
   return (
     <main className="layout">
       <section className="sidebar">
