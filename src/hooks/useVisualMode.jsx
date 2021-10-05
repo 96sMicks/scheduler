@@ -3,7 +3,6 @@ import { useState } from "react";
 const useVisualMode = (initialMode) => {
   const [mode, setMode] = useState(initialMode);
   const [history, setHistory] = useState([initialMode]);
-  console.log("yyyyyy", history);
 
   const transition = (newMode, replace = false) => {
     if (replace === true) {

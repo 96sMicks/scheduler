@@ -10,7 +10,7 @@ import Form from "./Form";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE"
-const FORM = "FORM"
+
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -27,10 +27,11 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form/>
+        <Form 
+          interviewers={[]}
+          onCancel={() => back()}
+        />
       )}
-      {/* Can no long use this b/c we need to support more than two views */}
-      {/* {props.interview ? <Show {...props.interview} /> : <Empty />} */}
     </article>
   );
 }
