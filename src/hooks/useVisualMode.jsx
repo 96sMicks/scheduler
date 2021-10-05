@@ -9,8 +9,6 @@ const useVisualMode = (initialMode) => {
     if (replace === true) {
       // make a copy to avoid mutate state
       const tempHistory = [...history.slice(0, -1)];
-      console.log("transition", history);
-      console.log("transition cut off", tempHistory);
 
       setHistory(tempHistory);
     }
