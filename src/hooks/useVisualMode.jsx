@@ -3,22 +3,32 @@ import { useState } from "react";
 const useVisualMode = (initialMode) => {
   const [mode, setMode] = useState(initialMode);
   const [history, setHistory] = useState([initialMode]);
+  console.log("yyyyyy", history);
 
-  const transition = (newMode) => {
+  const transition = (newMode, replace = false) => {
+    if (replace === true) {
+      // make a copy to avoid mutate state
+      const tempHistory = [...history.slice(0, -1)];
+      console.log("transition", history);
+      console.log("transition cut off", tempHistory);
+
+      setHistory(tempHistory);
+    }
+
     // Updates the current mode state to a NEW MODE value
     setMode(newMode);
 
-    // keep track of the history of the modes but do NOT mutate state,
-    setHistory([...history, newMode]);
+    // keep track of the history of the modes
+    setHistory((history) => {
+      return [...history, newMode];
+    });
 
     // returns an array with a list of all the modes
+    // but avoid mutating state
     const updatedHistoryArray = [...history];
 
-    // pushes the new mode into the history array
+    // pushes the new mode into copy array
     updatedHistoryArray.push(newMode);
-
-    // console.log(mode)
-    // console.log("xxxxxxxxxx", parsedHistoryArray)
   };
 
   const back = () => {
@@ -27,9 +37,6 @@ const useVisualMode = (initialMode) => {
       const prevArray = [...history];
 
       prevArray.pop();
-
-      // console.log(history)
-      // console.log(prevArray)
 
       setHistory(prevArray);
 
