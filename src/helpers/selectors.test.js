@@ -1,5 +1,6 @@
 import { getAppointmentsForDay } from "helpers/selectors";
 import { getInterview } from "helpers/selectors";
+import { getInterviewersForDay } from "helpers/selectors"
 
 const state = {
   interviewers: {
@@ -14,16 +15,23 @@ const state = {
       avatar: "https://i.imgur.com/Nmx0Qxo.png"
     }
   },
+    "3": {
+      id: 3,
+      name: "Malcom Bryant",
+      avatar: "https://i.imgur.com/FK8V841.jpg"
+  },
   days: [
     {
       id: 1,
       name: "Monday",
-      appointments: [1, 2, 3]
+      appointments: [1, 2, 3],
+      interviewers: [1, 2]
     },
     {
       id: 2,
       name: "Tuesday",
-      appointments: [4, 5]
+      appointments: [4, 5],
+      interviewers: [1, 3]
     }
   ],
   appointments: {
