@@ -6,24 +6,34 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Status from "./Status";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
-const CREATE = "CREATE"
+const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 
 export default function Appointment(props) {
+
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
  
   function save(name, interviewer) {
+    
     const interview = {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id, interview);
-    transition(SHOW);
+
+    // Upon clicking save the transition is set to save 
+    transition(SAVING);
+
+    // Only when there's a succuessdul put request will the app
+    // show the appointment
+    props.bookInterview(props.id, interview)
+    .then(() => transition(SHOW));
   }
 
   return (
@@ -41,12 +51,12 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onCancel={() => back()}
           onSave={(name, interviewer) => {
+            transition(SAVING)
             save(name, interviewer)
           }}
-         
-        />
-
+        />  
       )}
+      {mode === SAVING && <Status message={"Saving"} /> }
     </article>
   );
 }
