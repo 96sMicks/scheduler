@@ -41,35 +41,28 @@ export function getInterview(state, interview) {
 
 export function getInterviewersForDay(state, day) {
   const dayArray = state.days;
+
   const daysFilter = dayArray.filter((selectedDay) => selectedDay.name === day);
-  
-  // console.log(daysFilter)
-  
-  for (const day of daysFilter) {
-    const interviewerArray = day.interviewers
-    return interviewerArray
-    
+
+  const filteredDayInterviewers = [];
+
+  if (dayArray.length === 0) {
+    return [];
   }
-  
 
-  // const filteredDayAppointments = [];
+  if (daysFilter.length === 0) {
+    return [];
+  }
 
-  // if (dayArray.length === 0) {
-  //   return [];
-  // }
+  for (const day of daysFilter) {
+    const interviewerArray = day.interviewers;
 
-  // if (daysFilter.length === 0) {
-  //   return [];
-  // }
-
-  // for (const day of daysFilter) {
-  //   const appointmentSlots = day.appointments;
-
-  //   for (const id of appointmentSlots) {
-  //     if (state.appointments[id]) {
-  //       filteredDayAppointments.push(state.appointments[id]);
-  //     }
-  //   }
-  //   return filteredDayAppointments;
-  // }
+    for (const id of interviewerArray) {
+    
+      if (state.interviewers[id]) {
+        filteredDayInterviewers.push(state.interviewers[id]);
+      }
+    }
+    return filteredDayInterviewers;
+  }
 }
