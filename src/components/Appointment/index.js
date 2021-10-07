@@ -41,13 +41,13 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch((error) => {
         console.log(error);
-        transition(ERROR_SAVE);
+        transition(ERROR_SAVE, true);
       });
   }
 
   function remove() {
     // Upon clicking, the deleting status appears
-    transition(DELETING);
+    transition(DELETING, true);
 
     // Once the HTTP request is complete, show an empty component
     props
@@ -55,7 +55,7 @@ export default function Appointment(props) {
       .then(() => transition(EMPTY))
       .catch((error) => {
         console.log(error);
-        transition(ERROR_DELETE);
+        transition(ERROR_DELETE, true);
       });
   }
 
@@ -101,7 +101,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === ERROR_SAVE && (
-        <Error message={"Could not save the appointment"} />
+        <Error message={"Could not save the appointment"} back={() => back()} />
       )}
       {mode === ERROR_DELETE && (
         <Error message={"Could not delete the appointment"} />
