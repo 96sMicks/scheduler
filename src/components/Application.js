@@ -30,12 +30,6 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    // Changes State
-    // setState({
-    //   ...state,
-    //   appointments
-    // });
-
     // Makes our data persistent
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview } )
       .then(() => {
@@ -50,8 +44,7 @@ export default function Application(props) {
   }
 
   const cancelInterview = (id) => {
-    // console.log(id);
-
+    
     // copy the appointment state, overwrite interview value to null
     const appointment = {
       ...state.appointments[id],
@@ -69,13 +62,12 @@ export default function Application(props) {
       .catch(function (error) {
         console.log(error);
       });
-    // console.log(appointment)
   }
 
   const schedule = dailyAppointments.map((appointment) => {
 
     const interview = getInterview(state, appointment.interview);
-
+    
     return (
     <Appointment
      key={appointment.id}

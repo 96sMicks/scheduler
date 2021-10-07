@@ -47,14 +47,8 @@ export default function Appointment(props) {
     // Once the HTTP request is complete, show an empty component
     props.cancelInterview(props.id)
       .then(() => transition(EMPTY) )
-    // console.log(props.id)
 
   }
-
-  function approve () {
-    transition(CONFIRM)
-  }
-
 
   return (
     <article className="appointment">
@@ -64,7 +58,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={() => approve()}
+          onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === CREATE && (
@@ -72,12 +66,8 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onCancel={() => back()}
           onSave={(name, interviewer) => {
-            transition(SAVING)
             save(name, interviewer)
           }}
-          // onDelete={(name, interviewer) => {
-          //   remove(name, interviewer)
-          // }}
         />  
       )}
       {mode === SAVING && <Status message={"Saving"} /> }
@@ -86,7 +76,17 @@ export default function Appointment(props) {
         <Confirm
           message={"Are you sure you would like to delete ?"}
           onConfirm={() => remove()}
-        /> )}
+        />
+       )}
+      {/* {mode === EDIT && (
+        <Form
+        interviewers={props.interviewers}
+          onCancel={() => back()}
+          onSave={(name, interviewer) => {
+            save(name, interviewer)
+          }} 
+        />
+      )} */}
     </article>
   );
 }
