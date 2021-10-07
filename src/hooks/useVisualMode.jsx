@@ -26,6 +26,7 @@ const useVisualMode = (initialMode) => {
 
     // pushes the new mode into copy array
     updatedHistoryArray.push(newMode);
+    console.log(history)
   };
 
   const back = () => {

@@ -8,6 +8,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -16,6 +17,8 @@ const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -33,7 +36,13 @@ export default function Appointment(props) {
 
     // Only when there's a succuessful put request will the app
     // show the appointment
-    props.bookInterview(props.id, interview).then(() => transition(SHOW));
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch((error) => {
+        console.log(error);
+        transition(ERROR_SAVE);
+      });
   }
 
   function remove() {
@@ -41,9 +50,16 @@ export default function Appointment(props) {
     transition(DELETING);
 
     // Once the HTTP request is complete, show an empty component
-    props.cancelInterview(props.id).then(() => transition(EMPTY));
+    props
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch((error) => {
+        console.log(error);
+        transition(ERROR_DELETE);
+      });
   }
 
+  
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -83,6 +99,12 @@ export default function Appointment(props) {
             save(name, interviewer);
           }}
         />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error message={"Could not save the appointment"} />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error message={"Could not delete the appointment"} />
       )}
     </article>
   );
