@@ -51,7 +51,7 @@ export default function Application(props) {
       interview: null
     };
 
-    
+
     return axios.delete(`http://localhost:8001/api/appointments/${id}`, { appointment } )
       .then(() => {
         setState({
