@@ -36,6 +36,13 @@ export default function Appointment(props) {
     .then(() => transition(SHOW));
   }
 
+  function remove (name, interviewer){
+    const interview ={
+      student: name,
+      interviewer
+    };
+  }
+
   return (
     <article className="appointment">
       <Header time={props.time} />
