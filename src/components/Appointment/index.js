@@ -30,18 +30,16 @@ export default function Appointment(props) {
     // Upon clicking save the transition is set to save 
     transition(SAVING);
 
-    // Only when there's a succuessdul put request will the app
+    // Only when there's a succuessful put request will the app
     // show the appointment
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW));
+  } 
+
+  function remove () {
+    props.cancelInterview(props.id)
   }
 
-  function remove (name, interviewer){
-    const interview ={
-      student: name,
-      interviewer
-    };
-  }
 
   return (
     <article className="appointment">
@@ -51,6 +49,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete={() => remove()}
         />
       )}
       {mode === CREATE && (
@@ -61,6 +60,9 @@ export default function Appointment(props) {
             transition(SAVING)
             save(name, interviewer)
           }}
+          // onDelete={(name, interviewer) => {
+          //   remove(name, interviewer)
+          // }}
         />  
       )}
       {mode === SAVING && <Status message={"Saving"} /> }
