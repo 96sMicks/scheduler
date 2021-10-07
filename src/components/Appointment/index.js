@@ -13,7 +13,8 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
-const DELETING = "DELETING"
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
 
 
 export default function Appointment(props) {
@@ -39,7 +40,7 @@ export default function Appointment(props) {
   } 
 
   function remove () {
-    transition(CONFIRM)
+  
     // Upon clicking, the deleting status appears
     transition(DELETING)
 
@@ -48,6 +49,10 @@ export default function Appointment(props) {
       .then(() => transition(EMPTY) )
     // console.log(props.id)
 
+  }
+
+  function approve () {
+    transition(CONFIRM)
   }
 
 
@@ -59,7 +64,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={() => remove()}
+          onDelete={() => approve()}
         />
       )}
       {mode === CREATE && (
@@ -77,6 +82,11 @@ export default function Appointment(props) {
       )}
       {mode === SAVING && <Status message={"Saving"} /> }
       {mode === DELETING && <Status message={"Deleting"} /> }
+      {mode === CONFIRM && (
+        <Confirm
+          message={"Are you sure you would like to delete ?"}
+          onConfirm={() => remove()}
+        /> )}
     </article>
   );
 }
