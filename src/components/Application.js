@@ -50,16 +50,26 @@ export default function Application(props) {
   }
 
   const cancelInterview = (id) => {
-    console.log(id);
+    // console.log(id);
 
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview: { ...interview }
-    // };
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment
-    // };
+    // copy the appointment state, overwrite interview value to null
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`, { appointment } )
+      .then(() => {
+        setState({
+          ...state,
+          appointment
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // console.log(appointment)
   }
 
   const schedule = dailyAppointments.map((appointment) => {

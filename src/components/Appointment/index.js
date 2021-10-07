@@ -7,11 +7,13 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
+import Confirm from "./Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = "DELETING"
 
 
 export default function Appointment(props) {
@@ -33,11 +35,19 @@ export default function Appointment(props) {
     // Only when there's a succuessful put request will the app
     // show the appointment
     props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW));
+      .then(() => transition(SHOW));
   } 
 
   function remove () {
+    transition(CONFIRM)
+    // Upon clicking, the deleting status appears
+    transition(DELETING)
+
+    // Once the HTTP request is complete, show an empty component
     props.cancelInterview(props.id)
+      .then(() => transition(EMPTY) )
+    // console.log(props.id)
+
   }
 
 
@@ -66,6 +76,7 @@ export default function Appointment(props) {
         />  
       )}
       {mode === SAVING && <Status message={"Saving"} /> }
+      {mode === DELETING && <Status message={"Deleting"} /> }
     </article>
   );
 }
