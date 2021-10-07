@@ -47,14 +47,9 @@ export default function Appointment(props) {
     // Once the HTTP request is complete, show an empty component
     props.cancelInterview(props.id)
       .then(() => transition(EMPTY) )
-    // console.log(props.id)
+   
 
   }
-
-  function approve () {
-    transition(CONFIRM)
-  }
-
 
   return (
     <article className="appointment">
@@ -64,7 +59,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={() => approve()}
+          onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === CREATE && (

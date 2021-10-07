@@ -50,7 +50,6 @@ export default function Application(props) {
   }
 
   const cancelInterview = (id) => {
-    // console.log(id);
 
     // copy the appointment state, overwrite interview value to null
     const appointment = {
@@ -58,7 +57,7 @@ export default function Application(props) {
       interview: null
     };
 
-    
+
     return axios.delete(`http://localhost:8001/api/appointments/${id}`, { appointment } )
       .then(() => {
         setState({
@@ -69,7 +68,6 @@ export default function Application(props) {
       .catch(function (error) {
         console.log(error);
       });
-    // console.log(appointment)
   }
 
   const schedule = dailyAppointments.map((appointment) => {
