@@ -8,11 +8,12 @@
 The initial homepage for Interviewer Scheduler
 !["The initial homepage for Interviewer Scheduler"](https://github.com/96sMicks/scheduler/blob/master/docs/Initial%20Homepage.png)
 
-A new appointment booked
-!["The initial homepage for Interview Scheduler"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20new%20Appointment%20is%20created.png)
+A new appointment being created
+!["A new appointment being created"](https://github.com/96sMicks/scheduler/blob/master/docs/Booking%20an%20Appointment.png)
 
-A new appointment was booked
-!["A new appointment was booked"](https://github.com/96sMicks/scheduler/blob/master/docs/Booking%20an%20Appointment.png)
+A new appointment booked
+!["A new appointment booked"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20new%20Appointment%20is%20created.png)
+
 
 A user deleting their appointment
 !["A user deleting their appointment"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20user%20deleteing%20their%20appointment.png)
