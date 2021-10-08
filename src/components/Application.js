@@ -49,7 +49,6 @@ export default function Application(props) {
             days={state.days}
             day={state.day}
             setDay={setDay}
-            // setDay={day => console.log(day)} was used to see the click day on console
           />
         </nav>
         <img

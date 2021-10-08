@@ -20,16 +20,16 @@ const useApplicationData = () => {
     const dayIndex = dayArray.findIndex(
       (selectedDay) => selectedDay.name === state.day
     );
-    console.log("day index in Array", dayIndex);
+    
+    /*
+     Once we have the index we can access it's spots number through dayArray[dayIndex].spots
 
-    //  Once we have the index we can access it's spots number
-    //  through dayArray[dayIndex].spots
-
-    // filter brings in an array of interview spots that are null and we take the .length of that array
-    //  to update the spots number
+    filter brings in an array of interview spots that are null and we take the .length of that array
+     to update the spots number
+    */
 
     dayArray[dayIndex].spots = dayArray[dayIndex].appointments.filter(
-      (appointmemtID) => appointments[appointmemtID].interview === null
+      (appointmentID) => appointments[appointmentID].interview === null
     ).length;
 
     return dayArray;

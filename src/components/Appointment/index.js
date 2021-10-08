@@ -34,7 +34,7 @@ export default function Appointment(props) {
     // Upon clicking save the transition is set to save
     transition(SAVING);
 
-    // Only when there's a succuessful put request will the app
+    // Only when there's a succuessful PUT request will the app
     // show the appointment
     props
       .bookInterview(props.id, interview)
