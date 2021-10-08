@@ -15,13 +15,12 @@ const useApplicationData = () => {
   const updateSpots = (id, appointments) => {
     // Avoid mutating state
     const dayArray = [...state.days];
-    console.log(dayArray)
 
     // Gets the day according to name in dayArray (use findIndex over filter due to whacky day order for some reason)
     const dayIndex = dayArray.findIndex(
       (selectedDay) => selectedDay.name === state.day
     );
-    console.log("day index in Array", dayIndex)
+    console.log("day index in Array", dayIndex);
 
     //  Once we have the index we can access it's spots number
     //  through dayArray[dayIndex].spots
@@ -29,23 +28,12 @@ const useApplicationData = () => {
     // filter brings in an array of interview spots that are null and we take the .length of that array
     //  to update the spots number
 
-    // Before update
-    console.log("Current number is", dayArray[dayIndex].spots)
-
-    // console.log(dayArray[dayIndex].appointments) returns an array
-    console.log(dayArray[dayIndex].appointments)
-
     dayArray[dayIndex].spots = dayArray[dayIndex].appointments.filter(
       (appointmemtID) => appointments[appointmemtID].interview === null
-      ).length;
+    ).length;
 
-      console.log("New number is", dayArray[dayIndex].spots)
-    console.log(dayArray);
-
-    return dayArray
-    
+    return dayArray;
   };
-
 
   const bookInterview = (id, interview) => {
     const appointment = {
@@ -58,16 +46,16 @@ const useApplicationData = () => {
     };
 
     // Makes our data persistent
-    const days = updateSpots(id, appointments)
+    const days = updateSpots(id, appointments);
     return axios
       .put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
         setState({
           ...state,
           appointments,
-          days
+          days,
         });
-      })
+      });
   };
 
   const cancelInterview = (id) => {
@@ -82,7 +70,7 @@ const useApplicationData = () => {
       [id]: appointment,
     };
 
-    const days = updateSpots(id, appointments)
+    const days = updateSpots(id, appointments);
 
     return axios
       .delete(`http://localhost:8001/api/appointments/${id}`, { appointment })
@@ -91,7 +79,7 @@ const useApplicationData = () => {
           ...state,
           appointment,
           appointments,
-          days
+          days,
         });
       });
   };
