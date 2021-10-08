@@ -30,14 +30,16 @@ const useApplicationData = () => {
     //  to update the spots number
 
     // Before update
-    console.log(dayArray[dayIndex].spots)
+    console.log("Current number is", dayArray[dayIndex].spots)
+
     // console.log(dayArray[dayIndex].appointments) returns an array
     console.log(dayArray[dayIndex].appointments)
 
     dayArray[dayIndex].spots = dayArray[dayIndex].appointments.filter(
-      (open) => appointments[open].interview === null
+      (appointmemtID) => appointments[appointmemtID].interview === null
       ).length;
 
+      console.log("New number is", dayArray[dayIndex].spots)
     console.log(dayArray);
 
     return dayArray
@@ -56,7 +58,6 @@ const useApplicationData = () => {
     };
 
     // Makes our data persistent
-
     const days = updateSpots(id, appointments)
     return axios
       .put(`http://localhost:8001/api/appointments/${id}`, { interview })
@@ -75,13 +76,22 @@ const useApplicationData = () => {
       ...state.appointments[id],
       interview: null,
     };
-    
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    const days = updateSpots(id, appointments)
+
     return axios
       .delete(`http://localhost:8001/api/appointments/${id}`, { appointment })
       .then(() => {
         setState({
           ...state,
           appointment,
+          appointments,
+          days
         });
       });
   };

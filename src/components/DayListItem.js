@@ -2,8 +2,6 @@ import React from "react";
 
 import "components/DayListItem.scss"
 import classNames from "classnames";
-import { tSExportAssignment } from "@babel/types";
-
 
 export default function DayListItem(props) {
 
