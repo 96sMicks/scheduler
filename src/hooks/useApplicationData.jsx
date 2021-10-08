@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useApplicationData = () => {
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -10,47 +9,63 @@ const useApplicationData = () => {
     interviewers: [],
   });
 
+  const updateSpots = (id, day) => {
+    const dayArray = state.days;
+    // console.log(dayArray)
+
+    // Gets the day according to id in dayArray (use findIndex over filter to not lose the day)
+    const dayIndex = dayArray.findIndex((selectedDay) => selectedDay.name === state.day);
+
+  //  Once we have the index we can access it's spots number
+    const daysSpotsNumber = dayArray[dayIndex].spots
+    console.log(dayArray[dayIndex].spots)
+
+  };
+
   // Used to set the current day
   const setDay = (day) => setState({ ...state, day });
 
   const bookInterview = (id, interview) => {
-    
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: { ...interview },
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
 
+    // console.log(updateSpots)
     // Makes our data persistent
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview } )
+    return axios
+      .put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
         setState({
           ...state,
-          appointments
+          appointments,
         });
       })
-  }
+      .then(() => {
+        updateSpots(id);
+      });
+  };
 
   const cancelInterview = (id) => {
-    
     // copy the appointment state, overwrite interview value to null
     const appointment = {
       ...state.appointments[id],
-      interview: null
+      interview: null,
     };
 
-
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`, { appointment } )
+    return axios
+      .delete(`http://localhost:8001/api/appointments/${id}`, { appointment })
       .then(() => {
         setState({
           ...state,
-          appointment
-        })
-      })
-  }
+          appointment,
+        });
+      });
+  };
 
   useEffect(() => {
     Promise.all([
@@ -67,7 +82,7 @@ const useApplicationData = () => {
     });
   }, []);
 
-  return { state, setDay, bookInterview, cancelInterview }
-}
+  return { state, setDay, bookInterview, cancelInterview };
+};
 
 export default useApplicationData;
