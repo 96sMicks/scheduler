@@ -20,7 +20,7 @@ const useApplicationData = () => {
     const dayIndex = dayArray.findIndex(
       (selectedDay) => selectedDay.name === state.day
     );
-    
+
     /*
      Once we have the index we can access it's spots number through dayArray[dayIndex].spots
 
@@ -45,7 +45,7 @@ const useApplicationData = () => {
       [id]: appointment,
     };
 
-    // Makes our data persistent
+    
     const days = updateSpots(id, appointments);
     return axios
       .put(`http://localhost:8001/api/appointments/${id}`, { interview })
