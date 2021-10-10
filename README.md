@@ -5,7 +5,27 @@
   Interview Scheduler was built through React and uses PostgreSQL as the interview database. The app and database are connected through a Websocket server which get updated through axios HTTP requests.
 
 ## ScreenShots
-!["The initial homepage for Interview Scheduler](https://github.com/96sMicks/scheduler/blob/master/docs/A%20new%20Appointment%20is%20created.png)
+The initial homepage for Interviewer Scheduler
+!["The initial homepage for Interviewer Scheduler"](https://github.com/96sMicks/scheduler/blob/master/docs/Initial%20Homepage.png)
+
+A new appointment being created
+!["A new appointment being created"](https://github.com/96sMicks/scheduler/blob/master/docs/Booking%20an%20Appointment.png)
+
+A new appointment booked
+!["A new appointment booked"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20new%20Appointment%20is%20created.png)
+
+A user editing their appointment with a new mentor
+!["A user editing their appointment with a new mentor"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20user%20editing%20their%20appointment%20with%20a%20new%20mentor.png)
+
+An appointment edited with a new mentor
+!["An appointment edited with a new mentor"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20new%20appointment%20edited%20with%20a%20new%20mentor.png)
+
+A user deleting their appointment
+!["A user deleting their appointment"](https://github.com/96sMicks/scheduler/blob/master/docs/A%20user%20deleteing%20their%20appointment.png)
+
+The app after a deletion
+!["The app after a deletion"](https://github.com/96sMicks/scheduler/blob/master/docs/Initial%20Homepage.png)
+
 
 ## Setup
 
@@ -28,3 +48,9 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+-React
+-Axios
+-PostgreSQL
+-classnames
