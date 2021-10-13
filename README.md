@@ -51,6 +51,9 @@ npm run storybook
 
 ## Dependencies
 -React
+-React-dom
+-React-hooks-testing-library
 -Axios
 -PostgreSQL
 -classnames
+-normailze.css
