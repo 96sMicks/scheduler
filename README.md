@@ -53,7 +53,10 @@ npm run storybook
 -React
 -React-dom
 -React-hooks-testing-library
+-React-test-renderer
 -Axios
 -PostgreSQL
 -classnames
 -normailze.css
+-babel
+-jest
